@@ -57,8 +57,45 @@
 
     <!-- === Main Section === -->
     <main class="flex-shrink-0">
-        <div class="container">
-            
+        <div class="container mt-5">
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col pb-3">
+                    <h1 class="display-5 fw-bold lh-1 mb-3">FIZZ BUZZ: A Coding Project</h1>
+                    <h5 class="lead"><strong>Fizz Buzz.</strong> A javascript coding exercise using loops. Write a program that prints the numbers from 1 to 100
+                        and for multiples of Input1, display "<strong>Fizz</strong>", and multiples of Input2, display "<strong>Buzz</strong>". 
+                        If a multiple of both, display "<strong>FizzBuzz</strong>".
+                    </h5>
+
+                    <hr>
+                    <h1 class="display-6 lh-1 mb-3">Instructions</h1>
+                    <h6 class="lead">Enter a fizz and a buzz value. Press the button and the values will appear.</h6>
+                </div>
+                <div class="col">
+                    <h5>Enter Values</h5>
+                    <form class="row">
+                        <div class="col">
+                            <input type="number" id="inputValue1" class="form-control" placeholder="Enter Input 1" value="3" aria-label="Enter Input 1">
+                        </div>
+                        <div class="col">
+                            <input type="number" id="inputValue2" class="form-control" placeholder="Enter Input 2" value="5" aria-label="Enter Input 2">
+                        </div>
+                        <div class="col-12 d-flex justify-content-end mt-2">
+                            <button type="button" id="btnSubmit" class="btn btn-dark">Buzz It</button>
+                        </div>
+                    </form>
+                    
+                    <div class="invisible fade show" id="divResults">
+                        <h1 class="display-6 lh-1 border-bottom mt-5">Results</h1>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-sm">
+                                <tbody id="tblResults">
+                                    <!-- Results Go Here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -96,6 +133,10 @@
 
     <!-- External JS -->
     <script src="js/site.js"></script>
+
+    <script>
+        document.getElementById("btnSubmit").addEventListener("click", getInputValues);
+    </script>
 </body>
 
 </html>

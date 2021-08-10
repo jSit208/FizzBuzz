@@ -72,3 +72,19 @@ main>.container {
     bottom: 0;
     width: 100%;
 }
+
+.fizzbuzz {
+    color: var(--red-color);
+    font-weight:bold;
+}
+.fizz {
+    color: green;
+    font-weight:bold;
+}
+.buzz {
+    color: purple;
+    font-weight:bold;
+}
+.none {
+    color: black;
+}
