@@ -8,49 +8,63 @@
 function getInputValues() {
     document.getElementById("divResults").classList.add("invisible");
 
-    let input1 = document.getElementById("inputValue1").value;
-    let input2 = document.getElementById("inputValue2").value;
-    let numbers = [];
+    let fizzValue = document.getElementById("fizzValue").value;
+    let buzzValue = document.getElementById("buzzValue").value;
 
-    input1 = Number.parseInt(input1); input2 = Number.parseInt(input2);
-    if(Number.isInteger(input1) && Number.isInteger(input2)){
-        numbers = generateNumbers();
-        displayResults(numbers, input1, input2);
+    fizzValue = Number.parseInt(fizzValue); buzzValue = Number.parseInt(buzzValue);
+    if(Number.isInteger(fizzValue) && Number.isInteger(buzzValue)){
+        //let numbers = generateNumbers();
+        let fizzBuzzResults = fizzBuzz(fizzValue, buzzValue);
+        //displayResults(numbers,input1, input2);
+        displayResults(fizzBuzzResults);
     } else {
-
+        alert("You must enter integers!");
     }
 }
 
-function generateNumbers() {
-    let numbersArray = [];
+function fizzBuzz(fizzValue, buzzValue) {
+    let results = [];
     for(let i = 1; i <= 100; i++){
-        numbersArray.push(i);
+        if(i % (fizzValue * buzzValue) == 0){
+            results.push("FizzBuzz");
+        } else if (i % fizzValue == 0) {
+            results.push("Fizz");
+        } else if (i % buzzValue == 0){
+            results.push("Buzz");
+        } else {
+            results.push(i);
+        }
     }
-    return numbersArray;
+    return results;
 }
-function displayResults(numbersArray, inputValue1, inputValue2) {
-    let strTableResults = `<tr>`;
 
+function displayResults(resultsFizzBuzz) {
+    let strTableResults = `<tr>`;
     document.getElementById("divResults").classList.remove("invisible");
 
-    numbersArray.forEach(number => {
-        if(number % (inputValue1 * inputValue2) === 0) {
-            strTableResults += addDataItem("FizzBuzz", "fizzbuzz");
-        } else if (number % inputValue1 === 0) {
-            strTableResults += addDataItem("Fizz", "fizz");
-        } else if (number % inputValue2 === 0) {
-            strTableResults += addDataItem("Buzz", "buzz");
-        } else {
-            strTableResults += addDataItem(number, "none");
+    for(let i = 0; i < resultsFizzBuzz.length; i++) {   
+        switch(resultsFizzBuzz[i]){
+            case "FizzBuzz":
+                strTableResults += addDataItem(resultsFizzBuzz[i], "fizzbuzz");
+                break;
+            case "Fizz":
+                strTableResults += addDataItem(resultsFizzBuzz[i], "fizz");
+                break;
+            case "Buzz":
+                strTableResults += addDataItem(resultsFizzBuzz[i], "buzz");
+                break;
+            default:
+                strTableResults += addDataItem(resultsFizzBuzz[i], "none");
+                break;
         }
-
-        if(number % 5 === 0 && number !== 100){
-            strTableResults += `</tr><tr>`
+        if( (i + 1) % 5 == 0 && (i+1) !== 100){
+            strTableResults += `</tr><tr>`;
         }
-    });
-    strTableResults += `</tr>`;
+    }
+    strTableResults += '</tr>';
     document.getElementById("tblResults").innerHTML = strTableResults;
 }
+
 function addDataItem(value, classType){
     return `<td class="${classType}">${value}</td>`;
 }
